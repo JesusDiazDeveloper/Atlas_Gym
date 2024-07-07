@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 
 const productsRoutes = require('./src/routes/productsRoutes');
 const instructorsRoutes = require('./src/routes/instructorsRoutes');
@@ -9,6 +10,14 @@ const { verifyToken } = require('./src/controllers/loginController');
 const app = express();
 
 app.use(express.json());
+
+const corsOptions = {
+    origin: ['http://localhost:5500', 'http://midominio.com'], // Agrega aquí los dominios permitidos
+    optionsSuccessStatus: 200 // Para navegadores legacy (IE11, varios SmartTVs)
+};
+
+app.use(cors(corsOptions));
+
 
 app.use('/products',verifyToken, productsRoutes);
 app.use('/instructors',verifyToken, instructorsRoutes);
