@@ -11,12 +11,12 @@ const app = express();
 
 app.use(express.json());
 
-const corsOptions = {
-    origin: ['http://localhost:5500', 'http://midominio.com'], // Agrega aquí los dominios permitidos
-    optionsSuccessStatus: 200 // Para navegadores legacy (IE11, varios SmartTVs)
-};
+// const corsOptions = {
+//     origin: ['http://localhost:5500', 'http://midominio.com'], // Agrega aquí los dominios permitidos
+//     optionsSuccessStatus: 200 // Para navegadores legacy (IE11, varios SmartTVs)
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 
 app.use('/products',verifyToken, productsRoutes);
