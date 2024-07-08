@@ -19,9 +19,8 @@ app.use(express.json());
 app.use(cors());
 
 
-app.use('/products',verifyToken, productsRoutes);
-app.use('/instructors',verifyToken, instructorsRoutes);
-
+app.use('/products', productsRoutes);
+app.use('/instructors', instructorsRoutes);
 app.use('/login', loginRoutes);
 
 const PORT = process.env.PORT || 3000;
