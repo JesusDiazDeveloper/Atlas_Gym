@@ -18,7 +18,6 @@ app.use(express.json());
 
 app.use(cors());
 
-
 app.use('/products', productsRoutes);
 app.use('/instructors', instructorsRoutes);
 app.use('/login', loginRoutes);

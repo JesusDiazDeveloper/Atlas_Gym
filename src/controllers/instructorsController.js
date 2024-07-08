@@ -2,7 +2,6 @@ const pool = require('../db/db');
 
 const getAllInstructors = async (req, res) => {
     const sql = 'SELECT * FROM Instructor';
-    console.log("------------------------HOLA -----------------");
     try {
         const connection = await pool.getConnection();
         const [rows] = await connection.query(sql);
