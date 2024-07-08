@@ -7,7 +7,7 @@ const getAllProducts = async (req, res) => {
         const connection = await pool.getConnection();
         const [rows] = await connection.query(sql);
         connection.release();
-        res.json(rows);
+        res.status(200).json(rows);
     } catch (err) {
         console.log("error getting products:", err);
         res.sendStatus(500);
@@ -22,7 +22,7 @@ const getProductById = async (req, res) => {
         const connection = await pool.getConnection();
         const [result] = await connection.query(sql, [id]);
         connection.release();
-        res.json(result);
+        res.status(200).json(result);
     } catch (err) {
         console.log("Error getting product by ID:", err);
         res.sendStatus(500);
@@ -38,7 +38,7 @@ const createProduct = async (req, res) => {
         const connection = await pool.getConnection();
         const [result] = await connection.query(sql, [img, name, price, stock, category]);
         connection.release();
-        res.json({
+        res.status(201).json({
             message: 'Product created',
             productId: result.insertId
         });
@@ -58,7 +58,7 @@ const updateProduct = async (req, res) => {
         const connection = await pool.getConnection();
         const [result] = await connection.query(sql, [img, name, price, stock, id_category, id]);
         connection.release();
-        res.json({
+        res.status(200).json({
             message: 'Product updated'
         });
     } catch (err) {
@@ -75,7 +75,7 @@ const deleteProduct = async (req, res) => {
         const connection = await pool.getConnection();
         const [result] = await connection.query(sql, [id]);
         connection.release();
-        res.json({
+        res.status(200).json({
             message: 'Product deleted'
         });
     } catch (err) {

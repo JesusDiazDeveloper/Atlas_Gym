@@ -7,7 +7,7 @@ const getAllInstructors = async (req, res) => {
         const connection = await pool.getConnection();
         const [rows] = await connection.query(sql);
         connection.release();
-        res.json(rows);
+        res.status(200).json(rows);
     } catch (err) {
         console.log("Error getting instructors:", err);
         res.sendStatus(500);
@@ -22,7 +22,7 @@ const getInstructorById = async (req, res) => {
         const connection = await pool.getConnection();
         const [rows] = await connection.query(sql, [id]);
         connection.release();
-        res.json(rows);
+        res.status(200).json(rows);
     } catch (err) {
         console.log("Error getting instructor by ID:", err);
         res.sendStatus(500);
@@ -38,7 +38,7 @@ const createInstructor = async (req, res) => {
         const connection = await pool.getConnection();
         const [result] = await connection.query(sql, [name, last_name, phone]);
         connection.release();
-        res.json({
+        res.status(201).json({
             message: 'Instructor created',
             InstructorId: result.insertId
         });
@@ -58,7 +58,7 @@ const updateInstructor = async (req, res) => {
         const connection = await pool.getConnection();
         const [result] = await connection.query(sql, [name, lastName, phone, id]);
         connection.release();
-        res.json({
+        res.status(200).json({
             message: 'Instructor updated'
         });
     } catch (err) {
@@ -75,7 +75,7 @@ const deleteInstructor = async (req, res) => {
         const connection = await pool.getConnection();
         const [result] = await connection.query(sql, [id]);
         connection.release();
-        res.json({
+        res.status(200).json({
             message: 'Instructor deleted'
         });
     } catch (err) {
